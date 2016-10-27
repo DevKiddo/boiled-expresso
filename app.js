@@ -6,6 +6,7 @@ let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let hbs = require('express-handlebars');
+let mongoose = require('mongoose');
 
 let routes = require('./routes/routes');
 
@@ -21,6 +22,7 @@ app.engine('handlebars', hbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 app.use('/', routes);
+mongoose.connect('mongodb://localhost/robots');
 
 app.listen(8080);
 console.log('Server Started')
