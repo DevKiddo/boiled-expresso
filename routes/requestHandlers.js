@@ -19,7 +19,7 @@ let home = function (req, res) {
 //
 
 let findRobot = function (req, res) {
-    Robot.find( { abilities: { $in: ["lovebutactuallyhate", "lifeispink"] } }, function (err, result) {
+    Robot.find({ abilities: { $in: ["lovebutactuallyhate", "lifeispink"] } }, function (err, result) {
         res.send(result);
     });
 }
@@ -41,12 +41,24 @@ let createRobot = function (req, res) {
     });
 }
 
+let getCatGET = function (req, res) {
+    console.log(req.query);
+    res.end(".");
+};
+
+let getCatPOST = function (req, res) {
+    console.log(req.body);
+    res.end(".");
+};
+
 //
 
 let requestHandlers = {
     home: home,
     findRobot: findRobot,
-    createRobot: createRobot
+    createRobot: createRobot,
+    getCatGET: getCatGET,
+    getCatPOST: getCatPOST
 }
 
 module.exports = requestHandlers;
