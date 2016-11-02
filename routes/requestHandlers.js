@@ -2,6 +2,7 @@
 
 
 let models = require('../models/models.js');
+let helper = require('../routes/helpers.js');
 let Robot = models.Robot;
 
 // Welcome home 
@@ -42,13 +43,15 @@ let createRobot = function (req, res) {
 }
 
 let getCatGET = function (req, res) {
-    console.log(req.query);
-    res.end(".");
+    if (req.xhr) {
+        res.send(helper.getCatImage(req.query));
+    } else {
+        res.sendFile(helper.getCatImage(req.query, true));
+    }
 };
 
 let getCatPOST = function (req, res) {
-    console.log(req.body);
-    res.end(".");
+    res.sendFile(helper.getCatImage(req.body, true));
 };
 
 //
