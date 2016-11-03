@@ -1,11 +1,12 @@
 'use strict'
 
-
 let models = require('../models/models.js');
-let helper = require('../routes/helpers.js');
+
+// Models
+
 let Robot = models.Robot;
 
-// Welcome home 
+//
 
 let home = function (req, res) {
     res.render('home', {
@@ -16,6 +17,12 @@ let home = function (req, res) {
         ]
     });
 }
+
+//
+
+let sayHi = function (req, res) {
+    res.send("<h3>Who's there?</h3>");
+};
 
 //
 
@@ -42,26 +49,14 @@ let createRobot = function (req, res) {
     });
 }
 
-let getCatGET = function (req, res) {
-    if (req.xhr) {
-        res.send(helper.getCatImage(req.query));
-    } else {
-        res.sendFile(helper.getCatImage(req.query, true));
-    }
-};
-
-let getCatPOST = function (req, res) {
-    res.sendFile(helper.getCatImage(req.body, true));
-};
 
 //
 
 let requestHandlers = {
-    home: home,
-    findRobot: findRobot,
-    createRobot: createRobot,
-    getCatGET: getCatGET,
-    getCatPOST: getCatPOST
+    sayHi,
+    home,
+    findRobot,
+    createRobot
 }
 
 module.exports = requestHandlers;
